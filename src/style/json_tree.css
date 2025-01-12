@@ -1,0 +1,135 @@
+/*
+ * JSON Tree Viewer
+ * http://github.com/summerstyle/jsonTreeViewer
+ *
+ * Copyright 2017 Vera Lobacheva (http://iamvera.com)
+ * Released under the MIT license (LICENSE.txt)
+ */
+
+ul.jsontree_tree {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.jsontree_node ul {
+  padding: 0 !important;
+}
+
+/* Background for the tree. May use for <body> element */
+.jsontree_bg {
+  background: transparent;
+}
+
+/* Styles for the container of the tree (e.g. fonts, margins etc.) */
+.jsontree_tree {
+  margin-left: 10px;
+  font-family: "PT Mono", monospace;
+  font-size: 0.8em;
+}
+
+/* Styles for a list of child nodes */
+.jsontree_node {
+  list-style: none;
+  padding: 0px;
+}
+.jsontree_child-nodes {
+  display: none;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+.jsontree_node_expanded
+  > .jsontree_value-wrapper
+  > .jsontree_value
+  > .jsontree_child-nodes {
+  display: block;
+}
+
+/* Styles for labels */
+.jsontree_label-wrapper {
+  float: left;
+  margin-right: 8px;
+}
+.jsontree_label {
+  font-weight: normal;
+  vertical-align: top;
+  color: #ffffff;
+  position: relative;
+  padding: 1px;
+  border-radius: 4px;
+  cursor: default;
+}
+.jsontree_node_marked > .jsontree_label-wrapper > .jsontree_label {
+  background: #fff2aa;
+}
+
+/* Styles for values */
+.jsontree_value-wrapper {
+  display: block;
+  overflow: hidden;
+}
+.jsontree_node_complex > .jsontree_value-wrapper {
+  overflow: inherit;
+}
+.jsontree_value {
+  vertical-align: top;
+  display: inline;
+}
+.jsontree_value_null {
+  color: #989898;
+  font-weight: bold;
+}
+.jsontree_value_string {
+  color: #74e372;
+  font-weight: bold;
+}
+.jsontree_value_number {
+  color: #7288ff;
+  font-weight: bold;
+}
+.jsontree_value_boolean {
+  color: #ff6c69;
+  font-weight: bold;
+}
+
+/* Styles for active elements */
+.jsontree_expand-button {
+  position: absolute;
+  top: 3px;
+  left: -15px;
+  display: block;
+  width: 11px;
+  height: 11px;
+}
+.jsontree_node_expanded
+  > .jsontree_label-wrapper
+  > .jsontree_label
+  > .jsontree_expand-button {
+  background-position: 0 -11px;
+}
+.jsontree_show-more {
+  cursor: pointer;
+}
+.jsontree_node_expanded
+  > .jsontree_value-wrapper
+  > .jsontree_value
+  > .jsontree_show-more {
+  display: none;
+}
+.jsontree_node_empty
+  > .jsontree_label-wrapper
+  > .jsontree_label
+  > .jsontree_expand-button,
+.jsontree_node_empty
+  > .jsontree_value-wrapper
+  > .jsontree_value
+  > .jsontree_show-more {
+  display: none !important;
+}
+.jsontree_node_complex > .jsontree_label-wrapper > .jsontree_label {
+  cursor: pointer;
+}
+.jsontree_node_empty > .jsontree_label-wrapper > .jsontree_label {
+  cursor: default !important;
+}

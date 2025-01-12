@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Hello Extensions",
+    "description": "Base Level Extension",
+    "version": "1.0",
+    "devtools_page": "app.html",
+    "action": {
+        "default_popup": "dialog/dialog.html",
+        "default_icon": "images/network.png"
+    }
+}
