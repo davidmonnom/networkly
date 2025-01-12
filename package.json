@@ -1,15 +1,17 @@
 {
   "type": "module",
+  "browser": {
+    "fs": false,
+    "path": false
+  },
   "scripts": {
     "clean": "rimraf dist",
-    "copy": "copyfiles -u 1 'src/**/!(*.js|*.ts|*.tsx|*.css)' 'src/libs/**/*' dist",
-    "build": "npm run clean && npm run copy && webpack --config webpack.config.cjs --watch"
+    "build": "npm run clean && webpack --config webpack.config.cjs"
   },
   "dependencies": {
     "@types/chrome": "^0.0.293",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
-    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "highlight.js": "^11.11.1",
     "js-beautify": "^1.15.1",
@@ -21,6 +23,7 @@
     "@types/js-beautify": "^1.14.3",
     "blob": "^0.1.0",
     "copyfiles": "^2.4.1",
+    "copy-webpack-plugin": "^12.0.2",
     "rimraf": "^6.0.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.7.3",

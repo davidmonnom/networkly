@@ -1,11 +1,14 @@
 {
-    "manifest_version": 3,
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "devtools_page": "app.html",
-    "action": {
-        "default_popup": "dialog/dialog.html",
-        "default_icon": "images/network.png"
-    }
+  "manifest_version": 3,
+  "name": "Networkly",
+  "description": "Networkly is a network tool that helps you to analyze requests and responses.",
+  "icons": {
+    "128": "images/networkly_n.png"
+  },
+  "version": "1.0",
+  "devtools_page": "app.html",
+  "action": {
+    "default_popup": "dialog/dialog.html",
+    "default_icon": "images/networkly_n.png"
+  }
 }

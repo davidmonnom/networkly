@@ -2,14 +2,16 @@
   "compilerOptions": {
     "strict": true,
     "target": "es6",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "module": "ES6",
     "esModuleInterop": true,
     "sourceMap": false,
     "rootDir": "src",
     "outDir": "dist/",
     "noEmitOnError": true,
-    "jsx": "react",
-    "typeRoots": ["node_modules/@types", "globals.d.ts"],
-  }
+    "jsx": "react-jsx",
+    "typeRoots": ["node_modules/@types", "src/globals.d.ts"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,23 +1,35 @@
 ## Networkly - Simple network inspector
 
-Chrome extension for inspecting network requests. This extension is a simplified version of the default one. 
+Chrome extension to simplify network request inspection. This application focuses on request payloads and responses. It lets you quickly display JSON payloads and responses by directly extending all JSON nodes.
 
-It enables faster inspection of payloads and responses, and automatically expends JSONs. 
+It's a minimalist version of Chrome's network inspection tool. It's designed to be simple and easy to use. It's a great tool for developers who want to quickly inspect network requests and responses.
 
-CSS, HTML and JS files are automatically beautified and highlighted.
+CSS, HTML and JS files are automatically enhanced and highlighted.
 
-### Requests list
-The query list contains a colored tag so that you can quickly find the query you're looking for and its type.
+![image](/preview/preview.gif)
 
-<img width="935" alt="image" src="https://github.com/user-attachments/assets/2cb336d1-7831-44bd-819a-c020cca3ad09" />
+### Fonctionnalities
 
-### Request preview
-The preview contains information about the request as well as its payload and body.
+- Display basic request informations
+- Request payload and response formatting and beautifying (JSON, JAVASCRIPT, HTML, XML, CSS)
+- List of all requests with colored type and status
 
-#### JSON
-JSON nodes are openable and closable
+### Installation
 
-<img width="935" alt="image" src="https://github.com/user-attachments/assets/29cac59b-5438-440d-a9b5-9c7cd60e442e" />
+The application will soon be available on the Chrome Store, but for the moment you can install it via source.
 
-#### JAVASCRIPT
-<img width="935" alt="image" src="https://github.com/user-attachments/assets/419a56a9-8b24-4373-9b30-a0d17c3db20c" />
+1. Clone the repository
+2. Install dependencies and build the project
+```bash
+npm install
+npm run build
+```
+3. Open Chrome and go to `chrome://extensions/`
+4. Enable developer mode
+5. Click on `Load unpacked` and select the `dist` folder
+
+The application will be available in the Chrome toolbar.
+
+### License
+
+MIT License

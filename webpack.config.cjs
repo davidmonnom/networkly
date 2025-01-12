@@ -1,13 +1,12 @@
-const webpack = require("webpack");
 const path = require("path");
-const srcDir = path.join(__dirname, "src");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   devtool: "inline-source-map",
   mode: "production",
   entry: {
-    app: path.join(srcDir, "app.ts"),
-    panel: path.join(srcDir, "panel/panel.tsx"),
+    app: "./src/app.ts",
+    panel: "./src/panel/Panel.tsx",
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -32,14 +31,24 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css"],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: `src/manifest.json`, to: "manifest.json" },
+        { from: `src/panel/index.html`, to: "panel/index.html" },
+        { from: `src/app.html`, to: "app.html" },
+        { from: `src/dialog`, to: "dialog/" },
+        { from: `src/libs`, to: "libs/" },
+        { from: `src/style`, to: "style/" },
+        { from: `src/images`, to: "images/" },
+      ],
+    }),
+  ],
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Requests } from "./Home";
 import beautify from "js-beautify";
 import hljs from "highlight.js";
