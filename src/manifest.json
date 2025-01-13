@@ -1,14 +1,17 @@
 {
   "manifest_version": 3,
   "name": "Networkly",
-  "description": "Networkly is a network tool that helps you to analyze requests and responses.",
+  "description": "Chrome extension to simplify network request inspection. This application focuses on request payloads and responses. It lets you quickly display JSON payloads and responses by directly extending all JSON nodes.",
   "icons": {
-    "128": "images/networkly_n.png"
+    "16": "images/networkly_16.png",
+    "32": "images/networkly_32.png",
+    "64": "images/networkly_64.png",
+    "128": "images/networkly_128.png"
   },
   "version": "1.0",
   "devtools_page": "app.html",
   "action": {
     "default_popup": "dialog/dialog.html",
-    "default_icon": "images/networkly_n.png"
+    "default_icon": "images/networkly_64.png"
   }
 }
