@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Networkly",
-  "description": "Chrome extension to simplify network request inspection. This application focuses on request payloads and responses. It lets you quickly display JSON payloads and responses by directly extending all JSON nodes.",
+  "description": "Chrome extension to simplify network request inspection. Focuses on request payloads and responses.",
   "icons": {
     "16": "images/networkly_16.png",
     "32": "images/networkly_32.png",
