@@ -1,23 +1,72 @@
-name: Node.js CI
+name: Release Workflow
+
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [22.x]
+
     steps:
-      - uses: actions/checkout@v4
+      # Step 1: Prepare environment
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
+
+      # Step 2: Check if version increased
+      - name: Get version from package.json
+        id: get_version
+        run: |
+          echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
+          echo "Version is $VERSION"
+
+      - name: Get latest release version
+        id: get_latest_release
+        run: |
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
+          echo "LATEST_VERSION=${LATEST_VERSION}" >> $GITHUB_ENV
+          echo "Latest version is $LATEST_VERSION"
+
+      - name: Check version increase
+        id: check_version
+        run: |
+          if [[ ! "${LATEST_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "VERSION_INCREASED=true" >> $GITHUB_ENV
+          elif [ "$(printf '%s\n' "${LATEST_VERSION}" "${VERSION}" | sort -V | head -n1)" != "${VERSION}" ]; then
+            echo "VERSION_INCREASED=true" >> $GITHUB_ENV
+          else
+            echo "VERSION_INCREASED=false" >> $GITHUB_ENV
+          fi
+
+      # Step 3: Build the project
+      - name: Install Dependencies
+        if: env.VERSION_INCREASED == 'true'
+        run: npm ci
+      - name: Build project
+        if: env.VERSION_INCREASED == 'true'
+        run: npm run build
+      - name: Zip dist
+        if: env.VERSION_INCREASED == 'true'
+        run: zip -r dist.zip dist
+
+      # Step 4: Release the project with artifacts
+      - name: Create Release with ZIP
+        if: env.VERSION_INCREASED == 'true'
+        id: create_release
+        uses: softprops/action-gh-release@v2.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: dist.zip
+          tag_name: ${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          draft: false
+          prerelease: true
