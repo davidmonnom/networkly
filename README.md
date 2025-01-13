@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/davidmonnom/networkly/actions/workflows/node.js.yml/badge.svg)](https://github.com/davidmonnom/networkly/actions/workflows/node.js.yml)
+
 ## Networkly - Simple network inspector
 
 Chrome extension to simplify network request inspection. This application focuses on request payloads and responses. It lets you quickly display JSON payloads and responses by directly extending all JSON nodes.
