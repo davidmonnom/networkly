@@ -1,5 +1,4 @@
-import React from "react";
-import { Requests } from "./Home";
+import { Requests } from "./RequestList";
 
 interface RequestLineProps {
   request: Requests;

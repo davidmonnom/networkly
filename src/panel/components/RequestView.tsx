@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Requests } from "./Home";
+import { Requests } from "./RequestList";
 import beautify from "js-beautify";
 import hljs from "highlight.js";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NetworkRequest } from "../Panel";
 import { RequestLine } from "./RequestLine";
 import { RequestView } from "./RequestView";
@@ -8,7 +8,7 @@ export interface Requests {
   content: string | null;
 }
 
-export const Home = () => {
+export const RequestList = () => {
   const [requests, setRequests] = useState<Requests[]>([]);
   const [selectedRequest, setSelectedRequest] = useState<Requests | null>(null);
 
