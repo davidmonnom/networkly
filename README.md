@@ -17,6 +17,8 @@ CSS, HTML and JS files are automatically enhanced and highlighted.
 - Display basic request informations
 - Request payload and response formatting and beautifying (JSON, JAVASCRIPT, HTML, XML, CSS)
 - List of all requests with colored type and status
+- Filter requests by type
+- Clear all requests
 
 ### Build it yourself
 

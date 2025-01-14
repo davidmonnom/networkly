@@ -8,7 +8,7 @@
     "64": "images/networkly_64.png",
     "128": "images/networkly_128.png"
   },
-  "version": "1.0",
+  "version": "1.0.2",
   "devtools_page": "app.html",
   "action": {
     "default_popup": "dialog/dialog.html",
