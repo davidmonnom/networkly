@@ -8,6 +8,8 @@ It's a minimalist version of Chrome's network inspection tool. It's designed to 
 
 CSS, HTML and JS files are automatically enhanced and highlighted.
 
+[Install from Chrome store](https://chromewebstore.google.com/detail/networkly/cecjokjpmiejeapdeoffnaflpiclhomf)
+
 ![image](/preview/preview.gif)
 
 ### Fonctionnalities
@@ -16,9 +18,7 @@ CSS, HTML and JS files are automatically enhanced and highlighted.
 - Request payload and response formatting and beautifying (JSON, JAVASCRIPT, HTML, XML, CSS)
 - List of all requests with colored type and status
 
-### Installation
-
-The application will soon be available on the Chrome Store, but for the moment you can install it via source.
+### Build it yourself
 
 1. Clone the repository
 2. Install dependencies and build the project
