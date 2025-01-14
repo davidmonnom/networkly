@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NetworkRequest, RequestType } from "../Panel";
 import { RequestLine } from "./RequestLine";
 import { RequestView } from "./RequestView";
-import { CustomCheckbox } from "./CustomCheckbox";
+import { CustomButton } from "./CustomButton";
 
 export interface Requests {
   request: NetworkRequest;
@@ -25,6 +25,11 @@ export const RequestList = () => {
   const onChangeType = (type: RequestType | null) => {
     setSelectedRequest(null);
     setType(type);
+  };
+
+  const onClear = () => {
+    setSelectedRequest(null);
+    setRequests([]);
   };
 
   const handleRequest = (request: NetworkRequest) => {
@@ -73,36 +78,43 @@ export const RequestList = () => {
   return (
     <div className="vh-100 d-flex flex-column w-100">
       <div className="w-100 bg-primary text-white">
-        <div className="d-flex align-items-center custom-checkbox p-1 gap-1">
-          <CustomCheckbox
-            label="All"
-            callback={() => onChangeType(null)}
-            active={type === null}
-          />
-          <CustomCheckbox
-            label="Fetch/XHR"
-            callback={() => onChangeType(RequestType.Fetch)}
-            active={type === RequestType.Fetch}
-          />
-          <CustomCheckbox
-            label="HTML"
-            callback={() => onChangeType(RequestType.Document)}
-            active={type === RequestType.Document}
-          />
-          <CustomCheckbox
-            label="CSS"
-            callback={() => onChangeType(RequestType.Stylesheet)}
-            active={type === RequestType.Stylesheet}
-          />
-          <CustomCheckbox
-            label="JS"
-            callback={() => onChangeType(RequestType.Script)}
-            active={type === RequestType.Script}
-          />
-          <CustomCheckbox
-            label="Image"
-            callback={() => onChangeType(RequestType.Image)}
-            active={type === RequestType.Image}
+        <div className="d-flex align-items-center justify-content-between custom-checkbox p-1">
+          <div className="d-flex align-items-center gap-1">
+            <CustomButton
+              label="All"
+              callback={() => onChangeType(null)}
+              active={type === null}
+            />
+            <CustomButton
+              label="Fetch/XHR"
+              callback={() => onChangeType(RequestType.Fetch)}
+              active={type === RequestType.Fetch}
+            />
+            <CustomButton
+              label="HTML"
+              callback={() => onChangeType(RequestType.Document)}
+              active={type === RequestType.Document}
+            />
+            <CustomButton
+              label="CSS"
+              callback={() => onChangeType(RequestType.Stylesheet)}
+              active={type === RequestType.Stylesheet}
+            />
+            <CustomButton
+              label="JS"
+              callback={() => onChangeType(RequestType.Script)}
+              active={type === RequestType.Script}
+            />
+            <CustomButton
+              label="Image"
+              callback={() => onChangeType(RequestType.Image)}
+              active={type === RequestType.Image}
+            />
+          </div>
+          <CustomButton
+            label="Clear"
+            callback={() => onClear()}
+            active={true}
           />
         </div>
       </div>

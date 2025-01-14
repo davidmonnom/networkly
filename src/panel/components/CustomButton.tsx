@@ -1,14 +1,14 @@
-type CustomCheckboxProps = {
+type CustomButtonProps = {
   label: string;
   active: boolean;
   callback: () => void;
 };
 
-export const CustomCheckbox = ({
+export const CustomButton = ({
   label,
   active,
   callback,
-}: CustomCheckboxProps) => {
+}: CustomButtonProps) => {
   return (
     <div
       className={`checkbox d-flex align-items-center user-select-none border rounded ${
