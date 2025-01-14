@@ -1,3 +1,4 @@
+import { RequestType } from "../Panel";
 import { Requests } from "./RequestList";
 
 interface RequestLineProps {
@@ -11,34 +12,42 @@ export function RequestLine(props: RequestLineProps) {
   const status = request.response.status;
 
   const getMimeTypeColorString = () => {
-    const mimeType = request.response.content.mimeType;
     let name = "";
     let color = "";
 
-    if (mimeType.includes("image")) {
-      color = "#C68AFF";
-      name = "IMAGE";
-    } else if (mimeType.includes("json")) {
-      color = "#73C042";
-      name = "JSON";
-    } else if (mimeType.includes("html")) {
-      color = "#FE7016";
-      name = "HTML";
-    } else if (mimeType.includes("css")) {
-      color = "#2E6AF0";
-      name = "CSS";
-    } else if (mimeType.includes("javascript")) {
-      color = "#FEE237";
-      name = "JS";
-    } else if (mimeType.includes("xml")) {
-      color = "#FEE237";
-      name = "XML";
-    } else if (mimeType.includes("font")) {
-      color = "#FFFFFF";
-      name = "FONT";
-    } else {
-      color = "#4D5057";
-      name = "PLAIN";
+    switch (request._resourceType) {
+      case RequestType.Fetch:
+        color = "#ff6c6c";
+        name = "FETCH";
+        break;
+      case RequestType.XHR:
+        color = "#ff6c6c";
+        name = "XHR";
+        break;
+      case RequestType.Image:
+        color = "#C68AFF";
+        name = "IMAGE";
+        break;
+      case RequestType.Script:
+        color = "#FEE237";
+        name = "JS";
+        break;
+      case RequestType.Stylesheet:
+        color = "#2E6AF0";
+        name = "CSS";
+        break;
+      case RequestType.Font:
+        color = "#FFFFFF";
+        name = "FONT";
+        break;
+      case RequestType.Document:
+        color = "#FE7016";
+        name = "HTML";
+        break;
+      default:
+        color = "#a4a4a4";
+        name = request._resourceType?.toUpperCase() || "OTHER";
+        break;
     }
 
     return (

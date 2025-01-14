@@ -1,0 +1,14 @@
+.checkbox {
+  background-color: transparent !important;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.checkbox.active {
+  background-color: #434564 !important;
+  color: #e0dffe !important;
+}
+
+.checkbox span {
+  font-size: 0.8em;
+}

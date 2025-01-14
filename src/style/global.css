@@ -1,0 +1,62 @@
+.hljs {
+  background-color: #252529 !important;
+}
+
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+table {
+  table-layout: fixed;
+}
+
+.resize > tr th {
+  resize: horizontal;
+  overflow: auto;
+}
+
+th,
+td {
+  border: 1px solid;
+  padding: 3px 5px !important;
+  text-align: left;
+  font-weight: 400;
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td {
+  border-top: none;
+  border-bottom: none;
+}
+
+td.empty {
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+th:nth-child(1),
+th:nth-child(3),
+th:nth-child(4),
+th:nth-child(5) {
+  width: 10%;
+  min-width: 50px;
+}
+
+tr td:hover {
+  cursor: pointer;
+}
+
+.button {
+  border-bottom: 2px solid transparent !important;
+}
+
+.button.active {
+  border-bottom: 2px solid #a1a2fe !important;
+}

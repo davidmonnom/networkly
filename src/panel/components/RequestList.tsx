@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { NetworkRequest } from "../Panel";
+import { NetworkRequest, RequestType } from "../Panel";
 import { RequestLine } from "./RequestLine";
 import { RequestView } from "./RequestView";
+import { CustomCheckbox } from "./CustomCheckbox";
 
 export interface Requests {
   request: NetworkRequest;
@@ -11,6 +12,7 @@ export interface Requests {
 export const RequestList = () => {
   const [requests, setRequests] = useState<Requests[]>([]);
   const [selectedRequest, setSelectedRequest] = useState<Requests | null>(null);
+  const [type, setType] = useState<RequestType | null>(null);
 
   const onClose = () => {
     setSelectedRequest(null);
@@ -18,6 +20,11 @@ export const RequestList = () => {
 
   const onClickLine = (request: Requests) => {
     setSelectedRequest(request);
+  };
+
+  const onChangeType = (type: RequestType | null) => {
+    setSelectedRequest(null);
+    setType(type);
   };
 
   const handleRequest = (request: NetworkRequest) => {
@@ -34,6 +41,23 @@ export const RequestList = () => {
     });
   };
 
+  const getFilteredRequests = () => {
+    return requests.filter((request) => {
+      if (type === null) {
+        return true;
+      }
+
+      if (type === RequestType.Fetch) {
+        return (
+          request.request._resourceType === RequestType.Fetch ||
+          request.request._resourceType === RequestType.XHR
+        );
+      }
+
+      return request.request._resourceType === type;
+    });
+  };
+
   useEffect(() => {
     window.INITIAL_DATA?.forEach(handleRequest);
     chrome.devtools.network.onRequestFinished.addListener(handleRequest);
@@ -45,6 +69,40 @@ export const RequestList = () => {
 
   return (
     <div className="vh-100 d-flex flex-column w-100">
+      <div className="w-100 bg-primary text-white">
+        <div className="d-flex align-items-center custom-checkbox p-1 gap-1">
+          <CustomCheckbox
+            label="All"
+            callback={() => onChangeType(null)}
+            active={type === null}
+          />
+          <CustomCheckbox
+            label="Fetch/XHR"
+            callback={() => onChangeType(RequestType.Fetch)}
+            active={type === RequestType.Fetch}
+          />
+          <CustomCheckbox
+            label="HTML"
+            callback={() => onChangeType(RequestType.Document)}
+            active={type === RequestType.Document}
+          />
+          <CustomCheckbox
+            label="CSS"
+            callback={() => onChangeType(RequestType.Stylesheet)}
+            active={type === RequestType.Stylesheet}
+          />
+          <CustomCheckbox
+            label="JS"
+            callback={() => onChangeType(RequestType.Script)}
+            active={type === RequestType.Script}
+          />
+          <CustomCheckbox
+            label="Image"
+            callback={() => onChangeType(RequestType.Image)}
+            active={type === RequestType.Image}
+          />
+        </div>
+      </div>
       <div className="w-100 flex-grow-1 overflow-scroll">
         <table className="w-100 table table-striped table-hover table-fixed">
           <thead className="resize position-sticky top-0 bg-primary">
@@ -67,7 +125,7 @@ export const RequestList = () => {
             </tr>
           </thead>
           <tbody>
-            {[...requests].reverse().map((request, index) => {
+            {[...getFilteredRequests()].reverse().map((request, index) => {
               return (
                 <RequestLine
                   key={index}
