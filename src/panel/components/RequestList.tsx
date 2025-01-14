@@ -59,7 +59,10 @@ export const RequestList = () => {
   };
 
   useEffect(() => {
-    window.INITIAL_DATA?.forEach(handleRequest);
+    setTimeout(() => {
+      window.INITIAL_DATA?.forEach(handleRequest);
+    }, 150);
+
     chrome.devtools.network.onRequestFinished.addListener(handleRequest);
     chrome.devtools.network.onNavigated.addListener(() => {
       setRequests([]);

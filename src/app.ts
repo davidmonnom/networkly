@@ -16,6 +16,7 @@ chrome.devtools.panels.create("Networkly", "", "panel/index.html", (panel) => {
 
   network.onRequestFinished.addListener(requestHandler);
   panel.onShown.addListener(function onShown(window) {
+    console.log("Panel is shown");
     panel.onShown.removeListener(onShown);
     window.INITIAL_DATA = reqs;
     network.onRequestFinished.removeListener(requestHandler);
