@@ -19,6 +19,7 @@ CSS, HTML and JS files are automatically enhanced and highlighted.
 - List of all requests with colored type and status
 - Filter requests by type
 - Clear all requests
+- Code beautification is done with a Worker to avoid blocking the UI
 
 ### Build it yourself
 

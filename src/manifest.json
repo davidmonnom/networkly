@@ -8,8 +8,12 @@
     "64": "images/networkly_64.png",
     "128": "images/networkly_128.png"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "devtools_page": "app.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "action": {
     "default_popup": "dialog/dialog.html",
     "default_icon": "images/networkly_64.png"

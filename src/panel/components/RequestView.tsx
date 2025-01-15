@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Requests } from "./RequestList";
 import beautify from "js-beautify";
-import hljs from "highlight.js";
 
 import "highlight.js/styles/atom-one-dark.css";
 
@@ -52,6 +51,20 @@ export function RequestView(props: RequestViewProps) {
     response.appendChild(img);
   };
 
+  const highlight = (
+    content: string,
+    response: HTMLElement,
+    language: string
+  ) => {
+    const listener = (message: Event) => {
+      response.innerHTML = `<pre><code class='language-${language}'>${message}</code></pre>`;
+      chrome.runtime.onMessage.removeListener(listener);
+    };
+
+    chrome.runtime.sendMessage({ code: content, language: language });
+    chrome.runtime.onMessage.addListener(listener);
+  };
+
   const formatJsonContent = (content: string, response: HTMLElement) => {
     const object = JSON.parse(content);
     const tree = jsonTree.create(object, response);
@@ -60,17 +73,17 @@ export function RequestView(props: RequestViewProps) {
 
   const formatHtmlContent = (content: string, response: HTMLElement) => {
     const beautified = beautify.html_beautify(content, { indent_size: 2 });
-    response.innerHTML = `<pre><code class='language-xml'>${beautified}</code></pre>`;
+    highlight(beautified, response, "xml");
   };
 
   const formatCssContent = (content: string, response: HTMLElement) => {
     const beautified = beautify.css_beautify(content, { indent_size: 2 });
-    response.innerHTML = `<pre><code class="language-css">${beautified}</code></pre>`;
+    highlight(beautified, response, "css");
   };
 
   const formatJsContent = (content: string, response: HTMLElement) => {
     const beautified = beautify.js_beautify(content, { indent_size: 2 });
-    response.innerHTML = `<pre><code class="language-javascript">${beautified}</code></pre>`;
+    highlight(beautified, response, "javascript");
   };
 
   const formatXmlContent = (content: string, response: HTMLElement) => {
@@ -112,7 +125,6 @@ export function RequestView(props: RequestViewProps) {
         Object.keys(formatters).find((key) => mimeType.includes(key)) ||
         "default";
       formatters[formatter](content, response);
-      hljs.highlightAll();
     } catch (error) {
       response.innerText = content;
     }

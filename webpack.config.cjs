@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     app: "./src/app.ts",
     panel: "./src/panel/Panel.tsx",
+    background: "./src/background.ts",
   },
   output: {
     path: path.join(__dirname, "dist"),
